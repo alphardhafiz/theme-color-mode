@@ -1,0 +1,4 @@
+pakai #sesi6
+1. tulian mode ditambahkan jadi mode-dark/mode-light
+2.tambahkan menu nav warna lain
+3.komentai hasil karya

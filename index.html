@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>SESI-6</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <a onclick="reRender()" id="home">HOME</a>
+        <a onclick="toggleMode();darkMode()" id="modeDark">MODE <span id="typeDark"></span></a>
+        <a onclick="toggleMode();kalemMode()" id="modeKalem">MODE <span id="typeKalem"></span></a>
+      </nav>
+      <h1>SESI 6 CUY UNIVERSITY</h1>
+      <p class="info" id="info"></p>
+    </div>
+
+    <!-- initializing function script -->
+    <script>
+      let body = document.body;
+      let info = document.getElementById("info");
+      let modeDark = document.getElementById("modeDark");
+      let modeKalem = document.getElementById("modeKalem");
+      let home = document.getElementById("home");
+      let typeDark = document.getElementById("typeDark");
+      let typeKalem = document.getElementById("typeKalem");
+
+      const limit = 7;
+      let counter = 0;
+      let remainingLeft;
+
+      typeDark.textContent = "DARK";
+      typeKalem.textContent = "KALEM";
+
+      function toggleMode() {
+        if (counter == limit) {
+          return;
+        }
+        counter += 1;
+        remainingLeft = limit - counter;
+
+        //render ke info
+        if (remainingLeft == 0) {
+          info.textContent = `JATAH GANTI MODE ANDA SUDAH HABIS👹`;
+          modeDark.style.display = "none";
+          modeKalem.style.display = "none";
+          home.textContent = "RESTART";
+        } else {
+          info.textContent = `Ganti MODE dipakai ${counter}x, tersisa ${remainingLeft}`;
+        }
+      }
+
+      function darkMode() {
+        body.classList.remove("kalem");
+        body.classList.toggle("dark");
+        if (body.classList.contains("dark")) {
+          typeDark.textContent = "LIGHT";
+          typeKalem.textContent = "KALEM";
+        } else {
+          typeDark.textContent = "DARK";
+        }
+      }
+
+      function kalemMode() {
+        body.classList.remove("dark");
+        body.classList.toggle("kalem");
+        if (body.classList.contains("kalem")) {
+          typeKalem.textContent = "LIGHT";
+          typeDark.textContent = "DARK";
+        } else {
+          typeKalem.textContent = "KALEM";
+        }
+      }
+
+      function reRender() {
+        location.reload();
+      }
+    </script>
+  </body>
+</html>
